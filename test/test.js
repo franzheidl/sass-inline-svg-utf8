@@ -5,7 +5,8 @@ var inlineSVG = require('../');
 
 var render = function(file, done) {
   return sass.render({
-    functions: inlineSVG(),
+    functions: inlineSVG(path.resolve(__dirname,'./images')),
+    includePaths:[path.resolve(__dirname)],
     file: __dirname + '/scss/' + file
   }, done);
 }
