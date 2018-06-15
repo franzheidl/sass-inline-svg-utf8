@@ -16,9 +16,10 @@ String replacement is good because you can use 'variables' in your SVG source fi
 
     var sass = require('node-sass');
     var sassInlineSVG = require('sass-inline-svg-utf8');
+    var pathToSvgDir = path.resolve(__dirname,'./my-path-to-direcory-with-swg') 
 
     sass.render({
-      functions: sassInlineSVG(),
+      functions: sassInlineSVG(pathToSvgDir), //pathToSvgDir - optional.
       file: file,
       outfile: outfile
     }, function(error, result) {
@@ -28,8 +29,18 @@ String replacement is good because you can use 'variables' in your SVG source fi
 In your Sass:
 
     .myClass {
+      //path can be relative to the directory, where you execute your build script
       background-image: inline-svg('./images/logo.svg');
     }
+    .myClass {
+      //you can provide path to the directory with svg files as a parameter to function and use reletive pathes
+      background-image: inline-svg('logo.svg');
+    }
+    .myClass {
+      //path can be relative to the current .sass file. 
+      background-image: inline-svg('../images/logo.svg');
+    }
+   
 
 For optimal results and minimal filesize, run your SVGs through [SVGO](https://github.com/svg/svgo) first (Actually, I'm on the fence whether to include SVGO optimization by default when inlining, but I’m not sure because of various settings/complexity). If you have a strong opinion on that, let’s dicuss [here](https://github.com/franzheidl/sass-inline-svg-utf8/issues/1).
 

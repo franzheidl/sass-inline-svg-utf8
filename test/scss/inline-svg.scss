@@ -1,3 +1,12 @@
-.test {
+.test-relative-to-sass-path {
+  background-image: inline-svg('../images/npm.svg');
+}
+.test-dir-path {
+  background-image: inline-svg('npm.svg');
+}
+.test-relative-to-script-path {
   background-image: inline-svg('./test/images/npm.svg');
+}
+.test-include-path-option {
+  background-image: inline-svg('../test/images/npm.svg');
 }
